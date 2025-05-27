@@ -13,4 +13,4 @@ async function fetchProducts() {
 }
 
 // Call the function when the page loads
-document.addEventListener('DOMContentLoaded', fetchProducts)
+document.addEventListener('DOMContentLoaded', fetchProducts);
