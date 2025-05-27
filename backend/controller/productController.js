@@ -1,55 +1,33 @@
-const express = require('express');
-const router = express.Router();
+const fs = require("fs");
 
-// Get all products
-const getAllProducts = async (req, res) => {
-    try {
-        res.status(200).json({ message: "Get all products" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+const getAllProducts = (req, res) => {
+    const data = fs.readFileSync("./product.json", "utf-8");
+    res.send({ message: "Product Data Fetched", data: data });
 };
 
-// Get single product
-const getProduct = async (req, res) => {
-    try {
-        res.status(200).json({ message: "Get single product" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+const getProductById = (req, res) => {
+    console.log("Get Product By Id api called");
+    res.send("Get Product By Id api called");
 };
 
-// Create product
-const createProduct = async (req, res) => {
-    try {
-        res.status(201).json({ message: "Create product" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+const createProduct = (req, res) => {
+    const productData = req.body;
+    data.push(productData);
+    res.send({ message: "Data inserted", product: productData });
 };
 
-// Update product
-const updateProduct = async (req, res) => {
-    try {
-        res.status(200).json({ message: "Update product" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+const updateProduct = (req, res) => {
+    console.log("Update Product api called");
 };
 
-// Delete product
-const deleteProduct = async (req, res) => {
-    try {
-        res.status(200).json({ message: "Delete product" });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+const deleteProduct = (req, res) => {
+    console.log("Delete Product api called");
 };
 
-module.exports = {
-    getAllProducts,
-    getProduct,
-    createProduct,
-    updateProduct,
-    deleteProduct
-}; 
+module.exports = { 
+    getAllProducts, 
+    getProductById, 
+    createProduct, 
+    updateProduct, 
+    deleteProduct 
+};
